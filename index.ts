@@ -76,9 +76,13 @@ const noAnswerHook = async (message: Message) => {
     return;
   }
   const members = await room.memberAll()
-  const boss = members.find(m => m.id === bossId)
-  if (room !== null && boss) {
-    await room.say`${boss}, ${from}问的问题我不知道，你帮我回答一下吧。`
+  const bossInRoom = members.find(m => m.id === bossId)
+  if (bossInRoom) {
+    await room.say`${bossInRoom}，${from}问的问题我不知道，你帮我回答一下吧。`
+  } else {
+    const boss = await getBoss()
+    await room.say`${from}，你的问题我不会回答，你可以联系我的老板`
+    await room.say(boss)
   }
 }
 
