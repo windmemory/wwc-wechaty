@@ -3,10 +3,14 @@ import { PuppetPadplus } from 'wechaty-puppet-padplus'
 import { EventLogger, QRCodeTerminal } from 'wechaty-plugin-contrib'
 import { WechatyWeixinOpenAI, SentimentData } from 'wechaty-weixin-openai'
 
-import { padplusToken, juzibotIntro, juzibotIntroUrl } from './const'
+import { padplusToken, juzibotIntro, juzibotIntroUrl, yuanIntroUrl } from './const'
 
 // FIXME: change me to your weixin id
 const bossId = 'lylezhuifeng'
+
+// FIXME: Please change this to your OpenAI token and key
+const openAIToken = 'gtuHmKG1Qb9HxVg0CFjuwh9oyrEkR8'
+const openAIEncodingAESKey = 'R7bO3V4oicz0FVETECdSfX9zeVRO4NQc4hkTZIoxLvN'
 
 /**
  * Initialize a puppet and wechaty
@@ -47,6 +51,9 @@ const processCommonMaterial = async (message: Message) => {
       await room.say(juzibotIntro)
       await room.say(new UrlLink(juzibotIntroUrl))
       return true
+    } else if (/高原/.test(text)) {
+      await room.say(new UrlLink(yuanIntroUrl))
+      return true
     }
   }
   return false
@@ -59,10 +66,6 @@ const processCommonMaterial = async (message: Message) => {
  */
 bot.use(EventLogger())
 bot.use(QRCodeTerminal({ small: true }))
-
-// FIXME: Please change this to your OpenAI token and key
-const openAIToken = 'your-openai-token'
-const openAIEncodingAESKey = 'your-openai-encoding-aes-key'
 
 /**
  * This hook function will be called when OpenAI does not match
@@ -104,7 +107,6 @@ const preAnswerHook = async (message: Message, _: any, sentiment: SentimentData)
   const hate = sentiment.hate
   const angry = sentiment.angry
   const score = (hate || 0) + (angry || 0)
-  console.log(sentiment)
   if (score > 0.9) {
     const boss = await getBoss()
     const from = message.from()

@@ -7,7 +7,7 @@ export const juzibotIntroUrl = {
 
 export const yuanIntroUrl = {
   description : '句子互动联合创始人 & CTO，前 Amazon, Expedia 全栈工程师',
-  thumbnailUrl: 'https://pre-angel.com/assets/peoples/yuan-gao/avatar.png',
+  thumbnailUrl: 'https://avatars3.githubusercontent.com/u/6801292',
   title       : '高原',
   url         : 'https://pre-angel.com/peoples/yuan-gao/',
 }
@@ -21,4 +21,4 @@ export const techStackAnswer = `前端：React + Ant Design
 
 export const juzibotIntro = `句子互动围绕微信生态为客户提供智能营销和销售服务，帮助企业引流并实现转化，客户覆盖教育、保险、大健康等多个领域。获得PreAngel、Plug and Play，Y Combination, TSVC和阿尔法公社多家中美机构投资。曾入选百度AI加速器和 Facebook 大陆首期加速器`
 
-export const padplusToken = 'token'
+export const padplusToken = 'puppet_padplus_d1a0e7e2a745b480'
